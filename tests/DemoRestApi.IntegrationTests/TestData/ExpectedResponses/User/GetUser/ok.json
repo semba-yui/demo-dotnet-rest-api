@@ -1,0 +1,9 @@
+{
+  "code": "CODE00000",
+  "message": "Success",
+  "date_time": "2024-01-01T00:00:00+09:00",
+  "data": {
+    "id": 1,
+    "user_name": "Semba Yui"
+  }
+}

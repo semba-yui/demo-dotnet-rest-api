@@ -22,3 +22,5 @@ jobs:
         run: dotnet build --no-restore
       - name: DotNet Unit Test
         run:  dotnet test --no-restore
+        env:
+          TZ: "Asia/Tokyo"

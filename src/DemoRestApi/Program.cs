@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using SembaYui.DemoRestApi.Commons.Json;
 using SembaYui.DemoRestApi.Commons.Logging;
 using SembaYui.DemoRestApi.Middlewares;
 using SembaYui.DemoRestApi.Repositories.Implementations;
@@ -13,8 +14,12 @@ builder.Configuration.AddJsonFile("appsettings.json", false, true)
     .AddEnvironmentVariables();
 
 // Add services to the container.
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = new SnakeCaseNamingPolicy();
+});
 
-builder.Services.AddControllers();
+// Add support to API Versioning
 builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
