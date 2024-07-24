@@ -37,4 +37,8 @@
     <ProjectReference Include="..\..\src\DemoRestApi\DemoRestApi.csproj"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestData\RequestBodies\User\CreateUser\"/>
+  </ItemGroup>
+
 </Project>
