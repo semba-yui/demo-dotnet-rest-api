@@ -1,4 +1,6 @@
 using Asp.Versioning;
+using SembaYui.DemoRestApi.Commons.Logging;
+using SembaYui.DemoRestApi.Middlewares;
 using SembaYui.DemoRestApi.Repositories.Implementations;
 using SembaYui.DemoRestApi.Repositories.Interfaces;
 using Serilog;
@@ -22,12 +24,22 @@ builder.Services.AddApiVersioning(options =>
 
 // DI
 builder.Services.AddSingleton<IDateTimeRepository, DateTimeRepositoryImpl>();
+builder.Services.AddSingleton<LogMessages>();
+builder.Services.AddTransient<RequestResponseLoggingMiddleware>();
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 // Add support to logging with SERILOG
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
+// Add support to localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
 var app = builder.Build();
+
+// Middleware
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Add support to logging request with SERILOG
 app.UseSerilogRequestLogging();
@@ -35,6 +47,14 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+// Add support to localization
+var supportedCultures = new[] { "en", "ja" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+app.UseRequestLocalization(localizationOptions);
 
 await app.RunAsync();
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="L0001-UNHANDLED-EXCEPTION" xml:space="preserve">
+    <value>[L0001] An unhandled exception has occurred.</value>
+  </data>
+  <data name="L0002-APPLICATION-EXCEPTION" xml:space="preserve">
+    <value>[L0002] An application exception has occurred.</value>
+  </data>
+  <data name="L0003-SYSTEM-EXCEPTION" xml:space="preserve">
+    <value>[L0003] A system exception has occurred.</value>
+  </data>
+</root>
