@@ -1,0 +1,16 @@
+<!-- For more info on central package management go to https://devblogs.microsoft.com/nuget/introducing-central-package-management/ -->
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Asp.Versioning.Mvc" Version="8.1.0"/>
+    <PackageVersion Include="AutoMapper" Version="13.0.1"/>
+    <PackageVersion Include="Polly" Version="8.4.1"/>
+    <PackageVersion Include="Serilog" Version="4.0.1-dev-02209"/>
+    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.2-dev-00341"/>
+    <PackageVersion Include="Serilog.Exceptions" Version="8.4.0"/>
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0"/>
+    <PackageVersion Include="ToString.Fody" Version="1.11.1"/>
+  </ItemGroup>
+</Project>
