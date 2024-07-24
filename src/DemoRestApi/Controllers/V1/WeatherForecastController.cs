@@ -6,6 +6,9 @@ using Serilog;
 
 namespace SembaYui.DemoRestApi.Controllers.V1;
 
+/// <summary>
+///     Weather Forecast Controller.
+/// </summary>
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]

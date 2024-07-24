@@ -1,4 +1,6 @@
 using Asp.Versioning;
+using SembaYui.DemoRestApi.Repositories.Implementations;
+using SembaYui.DemoRestApi.Repositories.Interfaces;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +17,11 @@ builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
 });
+
+// DI
+builder.Services.AddSingleton<IDateTimeRepository, DateTimeRepositoryImpl>();
 
 // Add support to logging with SERILOG
 builder.Host.UseSerilog((context, configuration) =>
@@ -34,6 +40,7 @@ await app.RunAsync();
 
 /// <summary>
 ///     For Integration Test.
-///     <see href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-8.0#basic-tests-with-the-default-webapplicationfactory"/>
+///     <see
+///         href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-8.0#basic-tests-with-the-default-webapplicationfactory" />
 /// </summary>
 public abstract partial class Program;
